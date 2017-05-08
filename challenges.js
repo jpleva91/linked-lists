@@ -15,10 +15,10 @@ List.prototype = {
     },
 
     /*
-        Method: addAtEnd
+        Method: insertAtTail
         Adds a Node to the END of the List
     */
-    addAtEnd: function(data) {
+    insertAtTail: function(data) {
         // if linkedList is empty
         if(this.start === null) {
             // start becomes a node
@@ -132,7 +132,7 @@ List.prototype = {
 var LinkedList = new List();
 var i = 2;
 while(i <= 20) {
-    LinkedList.addAtEnd(i);
+    LinkedList.insertAtTail(i);
     i+=2;
 }
 

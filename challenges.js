@@ -62,6 +62,7 @@ List.prototype = {
     */
     insertAtHead: function(data) {
         // Enter code here!
+        this.start = { data: data, next: this.start};
     },
 
     /*
@@ -70,6 +71,14 @@ List.prototype = {
     */
     length: function() {
         // Enter code here!
+        let count = 0;
+        let current = this.start;
+
+        while(current !== null) {
+            current = current.next;
+            count ++;
+        }
+        return count;
     },
 
     /*
@@ -79,6 +88,15 @@ List.prototype = {
     */
     exists: function(data) {
         // Enter code here!
+        let current = this.start;
+        let found = false;
+        while(current !== null) {
+            if(current.data == data) {
+                found = true;
+            }
+            current = current.next;
+        }
+        return found;
     },
 
     /*
@@ -88,6 +106,11 @@ List.prototype = {
     */
     each: function(f) {
         // Enter code here!
+        let current = this.start;
+        while(current !== null) {
+            f(current.data);
+            current = current.next;
+        }
     },
 
     /*
@@ -97,6 +120,18 @@ List.prototype = {
     */
     indexOf: function(data) {
         // Enter code here!
+        let current = this.start;
+        let found = false;
+        let count = 0;
+        while(current !== null) {
+            if(current.data == data) {
+                found = true;
+                return count;
+            }
+            current = current.next;
+            count ++;
+        }
+        return -1;
     },
 
     /*
@@ -105,6 +140,15 @@ List.prototype = {
               */
     dataFrom: function(i) {
         // Enter code here!
+        let current = this.start;
+        let count = 0;
+        while(current !== null) {
+            if(count === i) {
+                return current.data;
+            }
+            current = current.next;
+            count ++;
+        }
     },
 
     /*
@@ -114,6 +158,17 @@ List.prototype = {
     */
     insertAt: function(i, data){
         // Enter code here!
+        let current = this.start;
+        let count = 0;
+        while(current !== null) {
+            if(count === i) {
+                current.next.next.data = current.next.data;
+                current.next.data = data;
+            }
+            current = current.next;
+            count ++;
+        }
+        LinkedList.print();
     },
 
     /*
@@ -124,8 +179,17 @@ List.prototype = {
     */
     delete: function(data) {
         // Enter code here!
+        let current = this.start;
+        while(current !== null) {
+            if(current.data === data) {
+               current.data = current.next.data;
+               current.next = current.next.next;
+            }
+            current = current.next;
+        }
+        LinkedList.print();
     }
-}
+};
 
 
 /* LinkedList initialization */
@@ -136,4 +200,12 @@ while(i <= 20) {
     i+=2;
 }
 
-LinkedList.print();
+// LinkedList.insertAtHead(44);
+// LinkedList.print();
+// console.log(LinkedList.length());
+// console.log(LinkedList.exists(2));
+// LinkedList.each(console.log);
+// console.log(LinkedList.indexOf(2));
+// console.log(LinkedList.dataFrom(9));
+// LinkedList.insertAt(2, 72);
+// LinkedList.delete(6);
